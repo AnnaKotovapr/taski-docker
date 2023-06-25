@@ -1,0 +1,7 @@
+venv
+.git
+db.sqlite3
+venv/
+ENV/
+env.bak/
+venv.bak/

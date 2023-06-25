@@ -1,0 +1,8 @@
+node_modules
+build
+# Environments
+.venv
+venv/
+ENV/
+env.bak/
+venv.bak/
