@@ -20,9 +20,6 @@ jobs:
           POSTGRES_DB: django_db
         ports:
           - 5432:5432
-        # Эта конструкция описывает проверку готовности сервиса postgres
-        # Если её не будет, то тесты могут запуститься раньше, чем сервер PostgreSQL
-        # В результате тесты опять решат, что базы нет, — и упадут
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
     - uses: actions/checkout@v3
@@ -70,8 +67,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          # Хорошо ли держать логин и пароль прямо в коде workflow?
-          # Нет, это нехорошо
       - name: Push to DockerHub
         # Одновременный билд и пуш образа в Docker Hub
         uses: docker/build-push-action@v4
